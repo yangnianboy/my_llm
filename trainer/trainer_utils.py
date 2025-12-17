@@ -10,7 +10,7 @@ import torch
 import torch.distributed as dist
 from torch.utils.data import Sampler
 from transformers import AutoTokenizer
-from model.model_minimind import MiniMindForCausalLM
+from model.model_gugugaga import gugugagaForCausalLM
 
 
 def is_main_process():
@@ -104,7 +104,7 @@ def lm_checkpoint(lm_config, weight='full_sft', model=None, optimizer=None, epoc
 
 def init_model(lm_config, from_weight='pretrain', tokenizer_path='../model', save_dir='../out', device='cuda'):
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
-    model = MiniMindForCausalLM(lm_config)
+    model = gugugagaForCausalLM(lm_config)
 
     if from_weight!= 'none':
         moe_suffix = '_moe' if lm_config.use_moe else ''
