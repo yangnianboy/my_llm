@@ -55,6 +55,7 @@ class gugugagaConfig(PretrainedConfig):
             "type": "yarn"
         } if self.inference_rope_scaling else None
         self.flash_attn = flash_attn
+        self.use_moe = False
         
 
 class RMSNorm(nn.Module): #zero-RMSNorm
