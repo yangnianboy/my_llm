@@ -1,1 +1,10 @@
 dataset/pretrain_hq.jsonl
+dataset/sft_mini_512.jsonl
+checkpoints
+out
+trainer/__pycache__
+trainer/swanlog
+model/__pycache__
+dataset/__pycache__
+dataset/sft_512.jsonl
+dataset/dpo.jsonl
