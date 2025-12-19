@@ -49,7 +49,7 @@ def main():
     prompts = [
         '你有什么特长？',
         '为什么天空是蓝色的',
-        '你是谁？',
+        '你是谁创造的',
         '解释一下"光合作用"的基本过程',
         '如果明天下雨，我应该如何出门',
         '比较一下猫和狗作为宠物的优缺点',
@@ -59,7 +59,13 @@ def main():
     
     conversation = []
     model, tokenizer = init_model(args)
-    input_mode = int(input('[0] 自动测试\n[1] 手动输入\n'))
+
+    try:
+        raw = input('[0] 自动测试\n[1] 手动输入\n(默认0): ').strip()
+        input_mode = 0 if raw == '' else int(raw)
+    except (EOFError, ValueError):
+        input_mode = 0
+    
     streamer = TextStreamer(tokenizer, skip_prompt=True, skip_special_tokens=True)
     
     prompt_iter = prompts if input_mode == 0 else iter(lambda: input('👶: '), '')
