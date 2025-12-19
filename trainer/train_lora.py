@@ -39,8 +39,7 @@ def train_epoch(epoch, loader, iters, lora_params, start_step=0, wandb=None):
                 Y.view(-1)
             ).view(Y.size())
 
-            loss = (loss * loss_mask).sum() / loss_mask.sum()
-            loss += res.aux_loss
+            loss = (loss * loss_mask).sum() / loss_mask.sum()      
             loss = loss / args.accumulation_steps
 
         scaler.scale(loss).backward()
@@ -176,3 +175,5 @@ if __name__ == "__main__":
         else: # 默认从头开始
             loader = DataLoader(train_ds, batch_size=args.batch_size, shuffle=(train_sampler is None), sampler=train_sampler, num_workers=args.num_workers, pin_memory=True)
             train_epoch(epoch, loader, len(loader), lora_params, 0, wandb)
+    if dist.is_initialized():
+        dist.destroy_process_group()

@@ -62,13 +62,13 @@ class RMSNorm(nn.Module): #zero-RMSNorm
     def __init__(self, dim: int, eps: float = 1e-5):
         super().__init__()
         self.eps = eps
-        self.weight = nn.Parameter(torch.zeros(dim)) # 动态学习缩放比例
+        self.weight = nn.Parameter(torch.zeros(dim)) 
 
     def _norm(self, x):
         return x * torch.rsqrt(x.pow(2).mean(-1, keepdim=True) + self.eps)
 
     def forward(self, x):
-        return (1 + self.weight) * self._norm(x.float()).type_as(x)  # .float()确保32,防溢出, type_as还原
+        return (1 + self.weight) * self._norm(x.float()).type_as(x)  
 
 def apply_rotary_pos_emb(q, k, cos, sin, position_ids=None, unsqueeze_dim=1):
     def rotate_half(x):
