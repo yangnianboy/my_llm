@@ -8,3 +8,4 @@ model/__pycache__
 dataset/__pycache__
 dataset/sft_512.jsonl
 dataset/dpo.jsonl
+dataset/lora_identity.jsonl
