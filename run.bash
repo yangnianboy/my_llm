@@ -2,12 +2,12 @@
 set -e
 
 # --- Config ---
-NPROC=8
-HIDDEN=768
-LAYERS=16
-BATCH=128
-ACC=2
-WORKERS=8
+NPROC=1
+HIDDEN=512
+LAYERS=8
+BATCH=64
+ACC=4
+WORKERS=16
 DATA_DIR="./dataset"
 
 # --- Training ---
