@@ -38,4 +38,5 @@ torchrun --nproc_per_node $NPROC trainer/train_dpo.py \
     --wandb_project gugugaga-DPO-large
 
 echo ">>> Evaluation"
-python eval_llm.py --weight dpo
+python eval_llm.py --weight dpo --hidden_size  768 --num_hidden_layers 16 --lora_weight lora_identity
+python api_server.py --weight dpo --hidden_size  768 --num_hidden_layers 16 --lora_weight lora_identity
