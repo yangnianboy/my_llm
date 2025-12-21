@@ -163,7 +163,7 @@ class Attention(nn.Module): # GQA + gatated Attention
                 extended_attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
                 extended_attention_mask = (1.0 - extended_attention_mask) * -1e9
                 scores = scores + extended_attention_mask
-
+                
             scores = F.softmax(scores.float(), dim=-1).type_as(q)
             scores = self.attn_dropout(scores)
             output = scores @ v

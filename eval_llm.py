@@ -39,19 +39,18 @@ def main():
     parser.add_argument('--num_hidden_layers', default=8, type=int, help="隐藏层数量（Small/MoE=8, Base=16）")
     parser.add_argument('--use_moe', default=0, type=int, choices=[0, 1], help="是否使用MoE架构（0=否，1=是）")
     parser.add_argument('--inference_rope_scaling', default=False, action='store_true', help="启用RoPE位置编码外推（4倍，仅解决位置编码问题）")
-    parser.add_argument('--max_new_tokens', default=8192, type=int, help="最大生成长度（注意：并非模型实际长文本能力）")
-    parser.add_argument('--temperature', default=0.85, type=float, help="生成温度，控制随机性（0-1，越大越随机）")
-    parser.add_argument('--top_p', default=0.85, type=float, help="nucleus采样阈值（0-1）")
+    parser.add_argument('--max_new_tokens', default=512, type=int, help="最大生成长度（注意：并非模型实际长文本能力）")
+    parser.add_argument('--temperature', default=0.8, type=float, help="生成温度，控制随机性（0-1，越大越随机）")
+    parser.add_argument('--top_p', default=0.88, type=float, help="nucleus采样阈值（0-1）")
     parser.add_argument('--historys', default=0, type=int, help="携带历史对话轮数（需为偶数，0表示不携带历史）")
     parser.add_argument('--device', default='cuda' if torch.cuda.is_available() else 'cpu', type=str, help="运行设备")
     args = parser.parse_args()
     
     prompts = [
         '你有什么特长？',
-        '为什么天空是蓝色的',
-        '你是谁创造的',
-        '你叫什么名字',
-        '如果明天下雨，我应该如何出门',
+        '李白是谁',
+        '解释一下量子力学的基本原理',
+        '写一首关于春天的诗',
         '比较一下猫和狗作为宠物的优缺点',
         '解释什么是机器学习',
         '推荐一些中国的美食'
